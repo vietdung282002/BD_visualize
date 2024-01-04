@@ -10,18 +10,16 @@ df = pd.read_json("job-analysis.careerbuilder.json")
 
 
 
-
 # Filter the DataFrame based on the selected employment type
 industry = st.multiselect("pick your industry",df["industry"].unique())
 if not industry:
     filtered_df = df.copy()
 else:
     filtered_df = df[df["industry"].isin(industry)]
-
+filtered_df = filtered_df[filtered_df['job_level']!='not-found']
 # Count the occurrences of each employment type
 job_level_counts = filtered_df["job_level"].value_counts().reset_index()
 
-st.dataframe(job_level_counts)
 # Plotting the bar chart
 col1, col2 = st.columns((2))
 

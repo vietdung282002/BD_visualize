@@ -22,7 +22,7 @@ if not industry:
     industry_counts = df.copy()
 else:
     industry_counts = df[df["industry"].isin(industry)]
-    
+
 industry_counts = industry_counts["industry"].value_counts().reset_index()
 industry_counts.columns = ['industry', 'count']
 
